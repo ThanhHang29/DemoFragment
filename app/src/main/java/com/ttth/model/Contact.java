@@ -7,7 +7,7 @@ package com.ttth.model;
 public class Contact {
     private String name;
     private String phone;
-    private boolean isCheck = true;
+    private boolean isCheck = false;
 
     public Contact(String name, String phone) {
         this.name = name;

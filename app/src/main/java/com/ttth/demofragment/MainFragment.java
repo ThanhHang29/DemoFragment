@@ -27,7 +27,6 @@ public class MainFragment extends Fragment {
     private static final String TAG = "MainFragment";
     private ListView lvList;
     private ArrayList<Contact> arrContacts;
-    private LinearLayout linearLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class MainFragment extends Fragment {
         arrContacts.addAll(dataContact.getDataContact());
         Log.e(TAG, "-----------"+arrContacts);
         lvList = (ListView) view.findViewById(R.id.lvList);
-        linearLayout = (LinearLayout) view.findViewById(R.id.layout);
         initData();
         return view;
     }
@@ -48,6 +46,7 @@ public class MainFragment extends Fragment {
         lvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                arrContacts.get(position).setCheck(true);
                 myAdapter.notifyDataSetChanged();
                 Toast.makeText(getContext(),"click",Toast.LENGTH_LONG).show();
             }
