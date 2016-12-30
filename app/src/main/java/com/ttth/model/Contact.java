@@ -1,24 +1,47 @@
 package com.ttth.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Thanh Hang on 29/12/16.
  */
 
-public class Contact {
+public class Contact implements Parcelable{
     private String name;
     private String phone;
-    private boolean isCheck = false;
-
+    private boolean isSelected = true;
     public Contact(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
 
+    protected Contact(Parcel in) {
+        name = in.readString();
+        phone = in.readString();
+    }
+
+    public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+        @Override
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        @Override
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
+
     @Override
-    public String toString() {
-        return
-                "name='" + name +
-                ", phone='" + phone +"\n";
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(phone);
     }
 
     public String getName() {
@@ -37,11 +60,11 @@ public class Contact {
         this.phone = phone;
     }
 
-    public boolean isCheck() {
-        return isCheck;
+    public boolean isSelected() {
+        return isSelected;
     }
 
-    public void setCheck(boolean check) {
-        isCheck = check;
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

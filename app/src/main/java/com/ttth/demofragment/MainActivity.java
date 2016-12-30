@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.flFragment,new MainFragment());
+        transaction.add(R.id.flFragment,new MainRvFragment());
         transaction.commit();
     }
 
@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.flFragment, new Fragment2());
-//                transaction.commit();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, new Fragment2());
+                transaction.commit();
                 Toast.makeText(MainActivity.this,"click",Toast.LENGTH_SHORT).show();
             }
         });

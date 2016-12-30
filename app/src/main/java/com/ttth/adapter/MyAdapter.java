@@ -1,16 +1,13 @@
 package com.ttth.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
+import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ttth.demofragment.R;
 import com.ttth.model.Contact;
@@ -38,9 +35,11 @@ public class MyAdapter extends ArrayAdapter<Contact> {
             view = inflater.inflate(R.layout.item_list, parent, false);
             TextView tvName = (TextView) view.findViewById(R.id.tvName);
             TextView tvPhone = (TextView) view.findViewById(R.id.tvPhone);
+//            CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox);
             viewHolder = new ViewHolder();
             viewHolder.tvName = tvName;
             viewHolder.tvPhone = tvPhone;
+//            viewHolder.checkBox = checkBox;
             view.setTag(viewHolder);
         }
         viewHolder = (ViewHolder) view.getTag();
@@ -51,5 +50,6 @@ public class MyAdapter extends ArrayAdapter<Contact> {
 
     class ViewHolder {
         private TextView tvName, tvPhone;
+        private CheckBox checkBox;
     }
 }
