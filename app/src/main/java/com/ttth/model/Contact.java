@@ -10,7 +10,7 @@ import android.os.Parcelable;
 public class Contact implements Parcelable{
     private String name;
     private String phone;
-    private boolean isSelected = true;
+    private boolean isSelected = false;
     public Contact(String name, String phone) {
         this.name = name;
         this.phone = phone;
@@ -66,5 +66,13 @@ public class Contact implements Parcelable{
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + name + '\'' +
+                ", phone='" + phone + "\n";
+
     }
 }

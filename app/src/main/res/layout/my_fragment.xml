@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:id="@+id/relaytive"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+   <Button
+       android:layout_width="wrap_content"
+       android:id="@+id/btnNext"
+       android:background="@drawable/state"
+       android:text="Next"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:textColor="@android:color/white"
+       android:layout_height="wrap_content" />
+
    <android.support.v7.widget.RecyclerView
-       xmlns:android="http://schemas.android.com/apk/res/android"
        android:layout_width="match_parent"
        android:scrollbars="vertical"
        android:id="@+id/rvList"
+       android:layout_marginBottom="16dp"
+       android:layout_above="@id/btnNext"
        android:minHeight="3dp"
        android:layout_height="match_parent">
 
    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
