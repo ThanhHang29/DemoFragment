@@ -1,12 +1,11 @@
 package com.ttth.demofragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,8 @@ import java.util.ArrayList;
  * Created by Thanh Hang on 30/12/16.
  */
 
-public class MainRvFragment extends android.support.v4.app.Fragment {
+public class MainRvFragment extends Fragment{
+    public static final String KEY_CONTACT = "key_contact";
     private RecyclerView rvList;
     private RVAdapter rvAdapter;
     private ArrayList<Contact> arrContacts, arrNewContact;
@@ -45,8 +45,14 @@ public class MainRvFragment extends android.support.v4.app.Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                arrNewContact = rvAdapter.getArrNewContact();
+                Fragment2 fragment2 = new Fragment2();
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(KEY_CONTACT, arrNewContact);
+                fragment2.setArguments(bundle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.flFragment, new Fragment2());
+                transaction.replace(R.id.flFragment, fragment2);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
@@ -58,11 +64,9 @@ public class MainRvFragment extends android.support.v4.app.Fragment {
         arrContacts.addAll(dataContact.getDataContact());
         rvAdapter = new RVAdapter(arrContacts, getActivity());
         rvList.setAdapter(rvAdapter);
+        rvAdapter.notifyDataSetChanged();
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
+
 }

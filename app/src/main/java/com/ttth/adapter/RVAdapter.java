@@ -25,9 +25,7 @@ import java.util.ArrayList;
  */
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
-    public static final String KEY_CONTACT = "key_contact";
     private static final String TAG = "RVAdapter";
-    public static final String KEY_DATA = "key_data";
     private ArrayList<Contact>arrContacts;
     private ArrayList<Contact>arrNewContact = new ArrayList<>();
     private Context mContext;
@@ -50,26 +48,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         final Contact contact = arrContacts.get(position);
         holder.tvName.setText(contact.getName());
         holder.tvPhone.setText(contact.getPhone());
-//        holder.checkBox.setTag(contact);
         holder.checkBox.setChecked(contact.isSelected());
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CheckBox checkBox = (CheckBox)v;
-//                Contact contact1 = (Contact) checkBox.getTag();
                 if (checkBox.isChecked()){
                     contact.setSelected(true);
-//                    contact1.setSelected(true);
                     arrNewContact.add(contact);
                 }else {
-//                    contact1.setSelected(false);
                     contact.setSelected(false);
                     arrNewContact.remove(contact);
                 }
-//                MainRvFragment mainRvFragment = new MainRvFragment();
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelableArrayList(KEY_CONTACT, arrNewContact);
-//                mainRvFragment.setArguments(bundle);
                 Log.e(TAG,""+arrNewContact);
             }
         });
@@ -96,5 +86,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
             checkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
 
         }
+    }
+
+    public ArrayList<Contact> getArrNewContact() {
+        return arrNewContact;
     }
 }
