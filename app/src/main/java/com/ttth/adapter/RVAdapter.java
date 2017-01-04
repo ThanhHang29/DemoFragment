@@ -1,20 +1,14 @@
 package com.ttth.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.ttth.demofragment.Fragment2;
-import com.ttth.demofragment.MainActivity;
-import com.ttth.demofragment.MainRvFragment;
 import com.ttth.demofragment.R;
 import com.ttth.model.Contact;
 
@@ -27,11 +21,10 @@ import java.util.ArrayList;
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
     private static final String TAG = "RVAdapter";
     private ArrayList<Contact>arrContacts;
-    private ArrayList<Contact>arrNewContact = new ArrayList<>();
-    private Context mContext;
-    public RVAdapter(ArrayList<Contact> arrContacts, Context mContext) {
+    private ArrayList<Contact>arrNewContact;
+    public RVAdapter(ArrayList<Contact> arrContacts,ArrayList<Contact> arrNewContact) {
         this.arrContacts = arrContacts;
-        this.mContext = mContext;
+        this.arrNewContact = arrNewContact;
 
     }
 
@@ -88,7 +81,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyViewHolder> {
         }
     }
 
-    public ArrayList<Contact> getArrNewContact() {
-        return arrNewContact;
-    }
+//    public ArrayList<Contact> getArrNewContact() {
+//        return arrNewContact;
+//    }
 }

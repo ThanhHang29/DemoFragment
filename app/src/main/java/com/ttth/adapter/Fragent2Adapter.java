@@ -1,11 +1,17 @@
 package com.ttth.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ttth.demofragment.Fragment3;
+import com.ttth.demofragment.MainActivity;
 import com.ttth.demofragment.R;
 import com.ttth.model.Contact;
 
@@ -17,9 +23,11 @@ import java.util.ArrayList;
 
 public class Fragent2Adapter extends RecyclerView.Adapter<Fragent2Adapter.MyViewHolder> {
     private ArrayList<Contact> arrNewContact;
+    private Context mContext;
+    public Fragent2Adapter(ArrayList<Contact> arrNewContact, Context mContext) {
 
-    public Fragent2Adapter(ArrayList<Contact> arrNewContact) {
         this.arrNewContact = arrNewContact;
+        this.mContext = mContext;
     }
 
     @Override
@@ -32,9 +40,18 @@ public class Fragent2Adapter extends RecyclerView.Adapter<Fragent2Adapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Contact contact = arrNewContact.get(position);
+        final Contact contact = arrNewContact.get(position);
         holder.tvName.setText(contact.getName());
         holder.tvPhone.setText(contact.getPhone());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = ((MainActivity)mContext).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.flFragment, Fragment3.newInstance(contact));
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
     @Override

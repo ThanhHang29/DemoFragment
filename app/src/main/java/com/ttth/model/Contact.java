@@ -11,6 +11,7 @@ public class Contact implements Parcelable{
     private String name;
     private String phone;
     private boolean isSelected = false;
+
     public Contact(String name, String phone) {
         this.name = name;
         this.phone = phone;
@@ -19,6 +20,7 @@ public class Contact implements Parcelable{
     protected Contact(Parcel in) {
         name = in.readString();
         phone = in.readString();
+        isSelected = in.readByte() != 0;
     }
 
     public static final Creator<Contact> CREATOR = new Creator<Contact>() {
@@ -42,6 +44,16 @@ public class Contact implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(phone);
+        dest.writeByte((byte) (isSelected ? 1 : 0));
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isSelected=" + isSelected +
+                '}';
     }
 
     public String getName() {
@@ -66,13 +78,5 @@ public class Contact implements Parcelable{
 
     public void setSelected(boolean selected) {
         isSelected = selected;
-    }
-
-    @Override
-    public String toString() {
-        return
-                "name='" + name + '\'' +
-                ", phone='" + phone + "\n";
-
     }
 }
